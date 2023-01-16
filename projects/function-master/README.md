@@ -18,7 +18,7 @@
 # Part 2 - Function Master
 
 ## Review Questions from Module One Handbook?
- - what can we `typeof` ?
+ - what can we `typeof` ? 
  - what can't we `typeof` ?
  - how do we check those things?
  - Array.isArray()
