@@ -21,6 +21,10 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
+_.identity = function(value){
+    // return the value
+    return value;
+}
 
 /** _.typeOf
 * Arguments:
@@ -42,6 +46,39 @@ var _ = {};
 * _.typeOf([1,2,3]) -> "array"
 */
 
+_.typeOf = function(value){
+    // Check for null values separately
+    if (value === null) {
+        return "null";
+    };
+ // Use the typeof operator to check the basic type of the value
+ switch (typeof value) {
+    case "number":
+        return "number";
+    case "string":
+        return "string";
+    case "boolean":
+        return "boolean";
+    case "undefined":
+        return "undefined";
+    case "object":
+        // Use the instanceof operator to check for specific object types
+        if (value instanceof Array) {
+            return "array";
+        } else if (value instanceof Date) {
+            return "date";
+        } else if (value instanceof RegExp) {
+            return "regexp";
+        } else {
+            return "object";
+        }
+    case "function":
+        return "function";
+    default:
+        return "unknown";
+}
+}
+
 
 /** _.first
 * Arguments:
@@ -61,6 +98,23 @@ var _ = {};
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
+_.first = function(array, num){
+    // determine if array is not array
+    if(Array.isArray(array) === false){
+        return [];
+    } // determine if number is NaN
+    else if (num === NaN || num === undefined){
+        return array[0];
+    } // determine if numis greater than array.length
+    else if (num > array.length){
+        return array;
+        // determine if num is negative
+    } else if (num < 0){
+        return [];
+    } // return array using slice method from index 0 to num
+    return array.slice(0, num)
+
+}
 
 /** _.last
 * Arguments:
@@ -80,6 +134,23 @@ var _ = {};
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
+_.last = function(array, num){
+    // determine if array is not array
+    if(Array.isArray(array) === false){
+        return [];
+    } // determine if number is NaN
+    else if (num === NaN || num === undefined){
+        return array[array.length - 1];
+    } // determine if numis greater than array.length
+    else if (num > array.length){
+        return array;
+        // determine if num is negative
+    } else if (num < 0){
+        return [];
+    } 
+    return array.slice(1)
+
+}
 
 /** _.indexOf
 * Arguments:
@@ -97,6 +168,18 @@ var _ = {};
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(array, value){
+    // loop through array
+    for (let i = 0; i < array.length; i++){
+        // determine if value equal to current element
+        if (array[i] === value){
+            // return index
+            return i;
+        }
+    } // return -1 if value isnt found in the array
+    return -1;
+}
+
 
 /** _.contains
 * Arguments:
@@ -112,6 +195,17 @@ var _ = {};
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value){
+    // loop through array
+    for (let i = 0; i < array.length; i++){
+        // determine is value is in array
+        if (array[i] === value){
+            return true;
+        }
+    } // return false if value is not found
+    return false;
+}
 
 
 /** _.each
@@ -130,6 +224,23 @@ var _ = {};
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = function(collection, func){
+    // determine if collection is an array
+    if (Array.isArray(collection) === true){
+        // iterate through array
+        for (let i = 0; i < collection.length; i++){
+            // call function on element, index, and collection
+            func(collection[i], i, collection)
+        }
+    } // else us for in loop
+    else {
+        for (let key in collection){
+            // call function on prop, key, and collection
+            func(collection[key], key, collection)
+        }
+    }
+}
+
 
 /** _.unique
 * Arguments:
@@ -140,6 +251,20 @@ var _ = {};
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+
+_.unique = function(array){
+    // create new array to store values
+    let outp = [];
+    // loop through array
+    for (let i = 0; i < array.length; i++){
+        // determine if element hasn't occured in new array
+        if (_.indexOf(outp, array[i]) === -1){
+            //push element in new array
+            outp.push(array[i]);
+        }
+    } // return outp
+    return outp;
+}
 
 
 /** _.filter
@@ -158,6 +283,20 @@ var _ = {};
 *   use _.each in your implementation
 */
 
+_.filter = function(array, func){
+    // create new array to store output
+    let outp = [];
+    // loop through array
+    for (let i = 0; i < array.length; i++){
+        // invoke callback function on element, index, and array
+        if (func(array[i], i, array)){
+            // push element into output array
+            outp.push(array[i]);
+        }
+    } // return output
+    return outp;
+}
+
 
 /** _.reject
 * Arguments:
@@ -171,6 +310,20 @@ var _ = {};
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function(array, func){
+    // create new array to store output
+    let outp = [];
+    // loop through array
+    for (let i = 0; i < array.length; i++){
+        // determine if callback function is false
+        if (!(func(array[i], i, array))){
+            // push element into output array
+            outp.push(array[i]);
+        }
+    } // return output
+    return outp;
+}
 
 
 /** _.partition
@@ -192,6 +345,24 @@ var _ = {};
 }
 */
 
+_.partition = function(array, func){
+    // create arrays for truthy and falsey
+    let t = [];
+    let f = [];
+    // loop through array
+    for (let i = 0; i < array.length; i++){
+        // determine if callback function is true of false
+        if (func(array[i], i, array)){
+            // push element into truthy array if true
+            t.push(array[i]);
+        } // else push into falsey array
+        else {
+            f.push(array[i]);
+        }
+    } // return truthy and falsey arrays
+    return [t, f];
+}
+
 
 /** _.map
 * Arguments:
@@ -209,6 +380,26 @@ var _ = {};
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, func){
+    // create an output array
+    let outp = [];
+    // determine if collection is an array
+    if (Array.isArray(collection) === true){
+        // loop through array
+        for (let i = 0; i < collection.length; i++){
+            // push callback function into output array
+            outp.push(func(collection[i], i, collection))
+        }
+    } else { // if collection is an object
+            // loop through object with for in loop
+            for (let key in collection){
+                // push function into output array
+                outp.push(func(collection[key], key, collection))
+            }
+    } // return output
+    return outp;
+}
+
 
 /** _.pluck
 * Arguments:
@@ -220,6 +411,14 @@ var _ = {};
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+
+_.pluck = function(array, prop){
+    // use map to find prop
+    return _.map(array, function(value){
+        // return array containing prop
+        return value[prop];
+    });
+}
 
 
 /** _.every
@@ -243,6 +442,53 @@ var _ = {};
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+_.every = function(collection, func){
+    // determine if function is undefined
+        if (func === undefined ){
+            // determine if collection is an array
+            if(Array.isArray(collection)){
+                // iterate through array
+                for (let i = 0; i < collection.length; i++){
+                    // determine if element is falsey
+                    if (!collection[i]){
+                        // return false;
+                        return false;
+                    }
+                }
+            } else { 
+                // else, iterate through object using for in loop
+                for (let key in collection){
+                    // determine if value is falsey
+                    if (!collection[key]){
+                        // return false;
+                        return false;
+                    }
+                }
+            }
+        } else { 
+            // determine if collection is an array
+            if (Array.isArray(collection)){
+                // iterate through array
+                for (let i = 0; i < collection.length; i++){
+                    //determine if function is false
+                    if (func(collection[i], i, collection) === false){
+                        return false;
+                    }
+                }
+            } else{ 
+                // iterate through object using for in loop
+                for (let key in collection){
+                    // determine if function is false
+                    if (func(collection[key], key, collection) === false){
+                        return false;
+                    }
+                }
+            }
+        } // return true
+        return true;
+         }
+
+
 
 /** _.some
 * Arguments:
@@ -265,6 +511,51 @@ var _ = {};
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, func){
+    // determine if function is undefined
+        if (func === undefined ){
+            // determine if collection is an array
+            if(Array.isArray(collection)){
+                // iterate through array
+                for (let i = 0; i < collection.length; i++){
+                    // determine if element is true using non strict operator
+                    if (collection[i] == true){
+                        // return true;
+                        return true;
+                    }
+                }
+            } else { 
+                // else, iterate through object using for in loop
+                for (let key in collection){
+                    // determine if value is true using non strict operator
+                    if (collection[key] == true){
+                        // return false;
+                        return true;
+                    }
+                }
+            }
+        } else { 
+            // determine if collection is an array
+            if (Array.isArray(collection)){
+                // iterate through array
+                for (let i = 0; i < collection.length; i++){
+                    //determine if function is true using non strict operator
+                    if (func(collection[i], i, collection) == true){
+                        return true;
+                    }
+                }
+            } else { 
+                // iterate through object using for in loop
+                for (let key in collection){
+                    // determine if function is true using non strict operator
+                    if (func(collection[key], key, collection) == true){
+                        return true;
+                    }
+                }
+            }
+        } // return false
+        return false;
+         }
 
 /** _.reduce
 * Arguments:
@@ -285,6 +576,30 @@ var _ = {};
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, func, seed){
+    // create result variable
+    let result;
+    // determine if seed is undefined
+    if (seed === undefined){
+        // reassign result to first index of array
+        result = array[0];
+        // iterate through array using for loop
+        for (let i = 1; i < array.length; i++){
+            // reassign result to equal func
+            result = func(result, array[i], i, array)
+        }
+    } 
+    else {
+        // assign result to seed
+        result = seed;
+        // iterate through array
+        for (let i = 0; i < array.length; i++){
+            // reassign result to equal func
+            result = func(result, array[i], i, array)
+        }
+    } // return result
+    return result;
+}
 
 /** _.extend
 * Arguments:
@@ -300,6 +615,19 @@ var _ = {};
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(object) {  
+    // use for loop to iterate through arguments
+    for (let i = 1; i < arguments.length; i++) {
+        // use for in loop to iterate through keys of each element
+      for (let key in arguments[i]) {
+        // reassign object keys to equal arguments keys
+        object[key] = arguments[i][key];
+      }
+    };
+            // return object
+    return object;
+  }
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
