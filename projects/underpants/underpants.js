@@ -3,7 +3,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-var _ = {};
+var _ = {}; 
 
 
 /**
@@ -134,23 +134,7 @@ _.first = function(array, num){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.last = function(array, num){
-    // determine if array is not array
-    if(Array.isArray(array) === false){
-        return [];
-    } // determine if number is NaN
-    else if (num === NaN || num === undefined){
-        return array[array.length - 1];
-    } // determine if numis greater than array.length
-    else if (num > array.length){
-        return array;
-        // determine if num is negative
-    } else if (num < 0){
-        return [];
-    } 
-    return array.slice(1)
-
-}
+_.@param { Number }: The number of values to return
 
 /** _.indexOf
 * Arguments:

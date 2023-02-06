@@ -2,32 +2,85 @@
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function flatten() {
-
-}
+function flatten(arrays) {
+  // create empty array to store the flattened elements
+  let flattened = [];
+  // iterate through the arrays
+  for (let i = 0; i < arrays.length; i++) {
+  // iterate through the elements in the current array
+  for (let j = 0; j < arrays[i].length; j++) {
+  // push the current element to the flattened array
+  flattened.push(arrays[i][j]);
+  }
+  }
+  
+  // return flattened
+  return flattened;
+  }
 
 // /////////////////////////////////////////////////////////////////////////////
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop() {
-
+function loop(start, test, update, body) {
+  // set initial value to start
+  let value = start;
+  // while test function returns true when passed value
+  while (test(value)) {
+      // execute body function passing value
+      body(value);
+      // set value to the result of update function when passed value
+      value = update(value);
+  }
 }
+
 
 // /////////////////////////////////////////////////////////////////////////////
 // every ///////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function every() {
-
+function every(arr, test) {
+  // loop through the array
+  for (let i = 0; i < arr.length; i++) {
+    // if any value fails the test
+    if (!test(arr[i])) {
+      // return false
+      return false;
+    }
+  }
+  // if all values pass the test
+  // return true
+  return true;
 }
+
 
 // /////////////////////////////////////////////////////////////////////////////
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
+function dominantDirection(string) {
+// how to keep track of the competing origins
+  // ltt?
+  // rtl?
 
+  let ltr = [];
+  let rtl = [];
+
+  for (let i = 0; i < string.length; i++){
+    let script = characterScript(string.charCodeAt(i)); 
+
+    if (script !== null){
+      script.direction === 'ltr' ? ltr.push(script) : rtl.push(script);
+    }
+
+  }
+
+  if (ltr.length > rtl.length){
+    return 'ltr';
+  } else {
+    return 'rtl';
+  }
+  
 }
 
 // /////////////////////////////////////////////////////////////////////////////

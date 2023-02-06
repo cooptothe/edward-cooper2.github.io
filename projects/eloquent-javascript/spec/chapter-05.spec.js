@@ -1,4 +1,4 @@
-describe('Eloquent JavaScript', function () {
+describe('Eloquent JavaScript', function () { 
   describe('Chapter 05', function () {
     describe("flatten", function () {
       it("flattens two dimensional array into single array", function () {
