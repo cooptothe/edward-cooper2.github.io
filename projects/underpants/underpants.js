@@ -134,7 +134,7 @@ _.first = function(array, num){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.@param { Number }: The number of values to return
+
 
 /** _.indexOf
 * Arguments:

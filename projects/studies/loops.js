@@ -6,6 +6,14 @@
  * and perform the same operation on each element.
  * 2. There are several different types of loops in JavaScript, 
  * each with its own specific use cases.
+ * 3. Loops in Javascript are comprised of 3 statements:
+ *      - Start statement: This statement is executed once before the loop starts. 
+ *    It's used to initialize a variable that will be used in the loop.
+ *      - Stop statement: This statement is evaluated before each iteration of the loop. 
+ *    If the statement evaluates to false, the loop stops executing.
+ *      - Update statement: This statement is executed at the end of each iteration of the loop. 
+ *    It's used to update the variable that was initialized in the start statement, 
+ *    so that the stop statement can eventually evaluate to false.
  */
 
 // 1. while, for, for-in loops

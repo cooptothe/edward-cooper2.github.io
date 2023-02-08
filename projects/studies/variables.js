@@ -10,10 +10,12 @@
  */
 
 // 1.Delcaration and Assignment
-// Here are some examples on how to declare and assign varibales.
+// Here are some examples on how to declare, assign, and reassign varibales.
 var x; // declare variable x
 x = 10; // assign value 10 to x
 console.log(x); // outputs 10
+var x = 20; // reassign value 20 to x
+console.log(x); // outputs 20
 
 // 2. var, let, const
 /**
@@ -30,6 +32,37 @@ console.log(x); // outputs 10
  * This means that once a value is assigned to a "const" variable, it cannot be changed. 
  * "const" variables must also be initialized (assigned a value) when they are declared.
  */
+
+// Example of var, let, and const:
+var example1 = "var";
+let example2 = "let";
+const example3 = "const";
+
+// Reassigning a var:
+example1 = "reassigned var";
+console.log(example1); // outputs: "reassigned var"
+
+// Reassigning a let:
+example2 = "reassigned let";
+console.log(example2); // outputs: "reassigned let"
+
+// Reassigning a const (throws error):
+example3 = "reassigned const";
+console.log(example3); // throws error: "Assignment to constant variable."
+
+// Block scope example with let:
+if (true) {
+let blockScope = "I'm block scoped";
+console.log(blockScope); // outputs: "I'm block scoped"
+}
+console.log(blockScope); // throws error: "blockScope is not defined"
+
+// Block scope example with const:
+if (true) {
+const blockScope = "I'm block scoped";
+console.log(blockScope); // outputs: "I'm block scoped"
+}
+console.log(blockScope); // throws error: "blockScope is not defined"
 
 // 3. Hoisting
 /**

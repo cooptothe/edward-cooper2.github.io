@@ -20,14 +20,31 @@
  */
 // code example
 
-// Basic assignment operator
-var x = 10;
-console.log(x); // 10
+// Assignment operators:
 
-// Compound assignment operator
-var y = 5;
-y += 3;
-console.log(y); // 8
+let x = 10;
+
+// Addition assignment operator
+x += 5; // x = x + 5;
+console.log(x); // outputs: 15
+
+// Subtraction assignment operator
+x -= 5; // x = x - 5;
+console.log(x); // outputs: 10
+
+// Multiplication assignment operator
+x *= 5; // x = x * 5;
+console.log(x); // outputs: 50
+
+// Division assignment operator
+x /= 5; // x = x / 5;
+console.log(x); // outputs: 10
+
+// Remainder assignment operator
+x %= 3; // x = x % 3;
+console.log(x); // outputs: 1
+
+
 
 // 2. Arithmetic Operators
 /**
@@ -43,9 +60,9 @@ console.log(y); // 8
 // code examples
 
 // Addition operator
-var x = 10;
+var m = 10;
 var y = 5;
-var z = x + y;
+var z = m + y;
 console.log(z); // 15
 
 // Subtraction operator
@@ -65,6 +82,12 @@ var g = 12;
 var h = 4;
 var i = g / h;
 console.log(i); // 3
+
+// Exponentiation operator
+let y = 7;
+let z = 3;
+let exponent = y ** z;
+console.log(exponent); // outputs: 343
 
 // 3. Comparison Operators
 /**

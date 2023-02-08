@@ -17,10 +17,12 @@
  * followed by parentheses, including any necessary arguments.
  */
 // code example 
+
+// Function Declaration
 function greet(name) {
     console.log("Hello, " + name + "!");
     }
-        
+    // Function Call/Invoke function        
     greet("John"); // logs "Hello, John!"
     
     // 2. What's the difference between a function's parameters and arguments passed to a function?
@@ -90,6 +92,17 @@ function greet(name) {
     
     testScope();
     console.log(x); // logs "global"
+
+    // How to access/modify variables from a global scope:
+    let z = "global";
+
+    function modifyGlobal() {
+    z = "modified";
+    console.log(z);
+    }
+
+    modifyGlobal();
+    console.log(z); // logs "modified"
     
     // 7. Closures
     /**

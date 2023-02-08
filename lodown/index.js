@@ -79,10 +79,11 @@ module.exports.typeOf = typeOf;
 
 /**
  * first: First determines the datatype of the array and number then loops over the array 
- * to determine the first number items of the array.
+ * to return the first number items of the array.
  * 
  * @param { Array }: The array over which to iterate.
- * @param { Number }: The number of values to return
+ * @param { Number }: The number of values to return.
+ * @return { Array }: Array filled with the elements of the original array.
  */
 
 function first (array, num){
@@ -105,12 +106,12 @@ function first (array, num){
 module.exports.first = first;
 
 /**
- * last: Last determines the datatype of the array and number and loops over the array to determine 
+ * last: Last determines the datatype of the array and number and loops over the array to return 
  * the last number items of the array. 
- * Last returns an array filled with the elements of the original array.
  * 
  * @param { Array }: The array over which to iterate.
  * @param { Number }: The number of values to return
+ * @return { Array }: Filled with the elements of the original array.
  */
 
 function last (array, num){
@@ -134,11 +135,12 @@ module.exports.last = last;
 
 /**
  * indexOf: IndexOf loops over the array and determines the index of the array that is the first occurrence 
- * of the given value. IndexOf returns the number of the index value that is the 
- * first occurrence of the given value.
+ * of the given value.
  * 
  * @param { Array }: The array which to iterate.
  * @param { Value }: The given value we are trying to determine which index inside the array.
+ * @return { Number }: The number of the index value that is the 
+ * first occurrence of the given value.
  */
 
 function indexOf (array, value){
@@ -155,11 +157,12 @@ function indexOf (array, value){
 module.exports.indexOf = indexOf;
 
 /**
- * contains: Contains is designed to loop over the array and determine if the index of the array equals the given value. 
- * Contains returns a boolean value of true or false.
+ * contains: Contains is designed to loop over the array and determine if the index of 
+ * the array equals the given value. 
  * 
  * @param { Array }: The array to iterate through.
  * @param { Value }: The value that will be determined if the array contains.
+ * @return { Boolean }: The value of true or false.
  */
 
 function contains (array, value){
@@ -175,11 +178,11 @@ function contains (array, value){
 module.exports.contains = contains;
 
 /**
- * unique: Unique loops over the array and removes the duplicates. 
- * Unique returns a new array filled with all the elements from the original array, 
- * with the duplicates removed.
+ * unique: Unique loops over the array and removes the duplicates.  
  * 
  * @param { Array }: The array that will be looped over.
+ * @return { Array }: New array filled with all the elements from the original array, 
+ * with the duplicates removed.
  */
 
 function unique (array){
@@ -199,11 +202,11 @@ module.exports.unique = unique;
 
 /**
  * filter: Filter is designed to loop over the Array and test each value in the array with the given function. 
- * Filter returns a new array that is filled with all the elements from the array that passed the 
- * function test and equaled true.
  * 
  * @param { Array }: The array that will be looped through.
  * @param { Function }: The function that will test each value in the array.
+ * @return { Array }: New array that is filled with all the elements from the array that passed the 
+ * function test and equaled true.
  */
 
 function filter (array, func){
@@ -223,11 +226,11 @@ module.exports.filter = filter;
 
 /**
  * reject: Reject is designed to loop over the Array and test each value in the array with the given function. 
- * Reject returns a new array that is filled with all of the elements from the original array that 
- * failed the function test and equaled false.
  * 
  * @param { Array }: The array that will be looped through.
  * @param { Function }: The function that will test each value in the array.
+ * @return { Array }: A new array that is filled with all of the elements from the original array that 
+ * failed the function test and equaled false.
  */
 
 function reject (array, func){
@@ -246,12 +249,13 @@ function reject (array, func){
 module.exports.reject = reject;
 
 /**
- * partition: Partition is designed to loop over the Array and test the values in the array with the given function. 
- * Partition returns a nested array that has two arrays inside of it, and each inner array is filled with the 
- * elements that either passed or failed the function test, respectively.
+ * partition: Partition is designed to loop over the Array and 
+ * test the values in the array with the given function. 
  * 
  * @param { Array }: The array that will be looped through.
  * @param { Function }: The function that will test each value in the array.
+ * @return { Array }: A nested array that has two arrays inside of it, and each inner array is filled with the 
+ * elements that either passed or failed the function test, respectively.
  */
 
 function partition (array, func){
@@ -274,12 +278,13 @@ function partition (array, func){
 module.exports.partition = partition;
 
 /**
- * map: Map is designed to determine the datatype of the given collection, use the appropriate loop to loop over the collection, 
+ * map: Map is designed to determine the datatype of the given collection, 
+ * use the appropriate loop to loop over the collection, 
  * and then pushes the results into a new array. 
- * Map returns that new array filled with the return values of the two function calls.
  * 
  * @param {Array or Object} collection: The collection over which to iterate.
  * @param {Function} action: The Function to be applied to each value in the collection.
+ * @return { Array }: New array filled with the return values of the two function calls.
  */
 
 function map (collection, func){
@@ -305,10 +310,10 @@ module.exports.map = map;
 
 /**
  * pluck: Pluck is designed to use the map function, with the array and a property as it's parameters. 
- * Pluck returns an array containing the value of property for every element in the original array.
  * 
  * @param { Array of Objects }: This functiontakes in an array objects.
  * @param { Property }: The property to pluck out of the objects we are iterating through.
+ * @return { Array }: An array containing the value of property for every element in the original array.
  */
 
 function pluck (array, prop){
@@ -321,11 +326,12 @@ function pluck (array, prop){
 module.exports.pluck = pluck;
 
 /**
- * every: Every is designed to test whether all elements in the array pass the test given by the provided function. 
- * Every returns a boolean value of true or false.
+ * every: Every is designed to test whether all elements in the array pass the 
+ * test given by the provided function. 
  * 
- * @param {Array or Object} collection: The collection over which to iterate.
- * @param {Function} Test: The Function to test to each value in the collection.
+ * @param { Array or Object } collection: The collection over which to iterate.
+ * @param { Function } Test: The Function to test to each value in the collection.
+ * @return { Boolean }: A boolean value of true or false.
  */
 
 function every (collection, func){
@@ -378,10 +384,10 @@ module.exports.every = every;
 /**
  * some: Some is designed to test whether at least one element in the array passes the test 
  * given by the provided function. 
- * Some returns a boolean value of true or false.
  * 
- * @param {Array or Object} collection: The collection over which to iterate.
- * @param {Function} Test: The Function to test to each value in the collection.
+ * @param { Array or Object } collection: The collection over which to iterate.
+ * @param { Function } Test: The Function to test to each value in the collection.
+ * @return { Boolean }: A boolean value of true or false.
  */
 
 function some (collection, func){
@@ -434,12 +440,12 @@ module.exports.some = some;
 /**
  * reduce: Reduce is designed to loop over the array and apply the given function to the previous result, 
  * the element of the array, and the index. 
- * Reduce returns the return value of the final function call on the previous result, 
- * the element, and the index.
  * 
  * @param { Array }: The array that will be iterated through.
  * @param { Function } action: The Function to be applied to each value in the collection.
  * @param { Seed }: The initial value used for the reduce operation and is optional.
+ * @return { Value }: The return value of the final function call on the previous result, 
+ * the element, and the index.
  */
 
 function reduce (array, func, seed){
@@ -471,9 +477,9 @@ module.exports.reduce = reduce;
 /**
  * extend: Extend is designed to copy properties, from every object from the second object onwards, 
  * into the first object in the order they are passed in. 
- * Extend returns the updated first object.
  * 
  * @param { Any Number of Objects }: This function takes in any number of arguments.
+ * @return { Object }: The updated first object.
  */
 
 function extend (object) {  
